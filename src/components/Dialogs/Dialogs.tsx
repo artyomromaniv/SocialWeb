@@ -3,7 +3,6 @@ import s from './Dialogs.module.css';
 import './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogsItem";
 
-
 type MessagePropsType = {
     message: string
     id: number

@@ -7,7 +7,7 @@ const ProfileInfo = () => {
         <div>
             <div>
                 <img
-                    src='https://p4.wallpaperbetter.com/wallpaper/471/767/754/abstract-ae-plexus-cyan-dots-wallpaper-preview.jpg'>
+                    src='https://cdn.pixabay.com/photo/2016/11/22/19/17/buildings-1850129__480.jpg'>
                 </img>
             </div>
             <div className={s.descriptionBlock}>

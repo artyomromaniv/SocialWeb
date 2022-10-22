@@ -5,7 +5,9 @@ import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 
 type ProfilePropsType = {
-    posts : Array<PostsType>
+    state: {
+        posts : Array<PostsType>
+    }
 }
 
 type PostsType = {
@@ -15,17 +17,11 @@ type PostsType = {
 }
 
 const Profile = (props:ProfilePropsType) => {
-    // let posts = [
-    //     {id: 1, message: 'Hi,How is your day?', likesCount: 12},
-    //     {id: 2, message: 'How are you?', likesCount: 8},
-    //     {id: 2, message: 'HEy?', likesCount: 25},
-    //     {id: 2, message: 'yo yo Yo?', likesCount: 10},
-    // ]
 
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts posts={props.posts}/>
+            <MyPosts posts={props.state.posts}/>
         </div>
 
     )

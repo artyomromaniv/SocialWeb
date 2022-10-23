@@ -11,13 +11,11 @@ type DialogsPropsType = {
     id: number
     name:string
 }
-
 type DialogsType = {
     state: {
         dialogs: Array<DialogsPropsType>
         messages: Array<MessagePropsType>
     }
-
 }
 
 const Message = (props: MessagePropsType) => {

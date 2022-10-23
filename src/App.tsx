@@ -6,32 +6,12 @@ import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
+import state, {RootStateType} from "./redux/state";
+
 
 type AppPropsType = {
-    state: {
-        profilePage: {
-            posts: Array<PostsType>
-
-        }
-        dialogsPage: {
-            dialogs: Array<DialogsType>
-            messages: Array<MessagesType>
-        }
-    }
-}
-
-type PostsType = {
-    id: number
-    message: string
-    likesCount: number
-}
-type DialogsType = {
-    id: number
-    name: string
-}
-type MessagesType = {
-    id: number
-    message: string
+    state: RootStateType
+    addPost: (postText: string)=>void
 }
 
 const App = (props: AppPropsType) => {
@@ -44,13 +24,12 @@ const App = (props: AppPropsType) => {
                 <div className={'app-wrapper-content'}>
                     <Routes>
                         <Route path='/dialogs/*' element={<Dialogs state={props.state.dialogsPage}/>}/>
-                        <Route path='/profile' element={<Profile state={props.state.profilePage}/>}/>
+                        <Route path='/profile' element={<Profile state={props.state.profilePage} addPost={props.addPost}/>}/>
                     </Routes>
                 </div>
             </div>
         </BrowserRouter>
     );
 }
-
 
 export default App;

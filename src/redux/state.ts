@@ -1,3 +1,5 @@
+import {renderTree} from "../render";
+
 type PostsType = {
     id: number
     message: string
@@ -12,6 +14,7 @@ type MessagesType = {
     message: string
 }
 type ProfilePageType = {
+    messageForNewPost:string
     posts: Array<PostsType>
 }
 type DialogsPage = {
@@ -28,6 +31,7 @@ export type RootStateType = {
 //сам стейт
 const state:RootStateType  = {
     profilePage: {
+        messageForNewPost: "",
         posts:  [
             {id: 1, message: 'Hi,How is your day?', likesCount: 12},
             {id: 2, message: 'How are you?', likesCount: 8},
@@ -62,6 +66,9 @@ export const addPost = (postText: string )=> {
         likesCount: 0
     }
     state.profilePage.posts.push(newPost)
+    renderTree(state)
 }
+
+
 
 export default state;

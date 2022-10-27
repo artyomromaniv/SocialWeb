@@ -1,27 +1,27 @@
 import {renderTree} from "../render";
 
-type PostsType = {
+export type PostsType = {
     id: number
     message: string
     likesCount: number
 }
-type DialogsType = {
+export type DialogsType = {
     id: number
     name: string
 }
-type MessagesType = {
+export type MessagesType = {
     id: number
     message: string
 }
-type ProfilePageType = {
-    messageForNewPost:string
+export type ProfilePageType = {
+    newPostText:string
     posts: Array<PostsType>
 }
-type DialogsPage = {
+export type DialogsPage = {
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>
 }
-type SideBarType = {}
+export type SideBarType = {}
 //общая типизация всех типов данных в стейте
 export type RootStateType = {
     profilePage:ProfilePageType
@@ -31,7 +31,7 @@ export type RootStateType = {
 //сам стейт
 const state:RootStateType  = {
     profilePage: {
-        messageForNewPost: "",
+        newPostText: '',
         posts:  [
             {id: 1, message: 'Hi,How is your day?', likesCount: 12},
             {id: 2, message: 'How are you?', likesCount: 8},
@@ -62,10 +62,16 @@ const state:RootStateType  = {
 export const addPost = (postText: string )=> {
     const newPost:PostsType = {
         id: 5,
-        message: postText,
+        message: state.profilePage.newPostText,
         likesCount: 0
     }
     state.profilePage.posts.push(newPost)
+    state.profilePage.newPostText = ''
+    renderTree(state)
+}
+
+export const changeNewPostText = (NewText :string) =>{
+    state.profilePage.newPostText = NewText
     renderTree(state)
 }
 

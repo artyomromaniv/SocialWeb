@@ -1,4 +1,6 @@
-import {renderTree} from "../render";
+let renderTree = () => {
+    console.log('state changed')
+}
 
 export type PostsType = {
     id: number
@@ -14,7 +16,7 @@ export type MessagesType = {
     message: string
 }
 export type ProfilePageType = {
-    newPostText:string
+    newPostText: string
     posts: Array<PostsType>
 }
 export type DialogsPage = {
@@ -24,15 +26,15 @@ export type DialogsPage = {
 export type SideBarType = {}
 //общая типизация всех типов данных в стейте
 export type RootStateType = {
-    profilePage:ProfilePageType
-    dialogsPage:DialogsPage
-    sideBar:SideBarType
+    profilePage: ProfilePageType
+    dialogsPage: DialogsPage
+    sideBar: SideBarType
 }
 //сам стейт
-const state:RootStateType  = {
+let state: RootStateType = {
     profilePage: {
         newPostText: '',
-        posts:  [
+        posts: [
             {id: 1, message: 'Hi,How is your day?', likesCount: 12},
             {id: 2, message: 'How are you?', likesCount: 8},
             {id: 3, message: 'HEy?', likesCount: 25},
@@ -41,7 +43,7 @@ const state:RootStateType  = {
         ],
     },
     dialogsPage: {
-        dialogs:  [
+        dialogs: [
             {id: 1, name: 'Artyom'},
             {id: 2, name: 'Nadya'},
             {id: 3, name: 'Roman'},
@@ -57,24 +59,26 @@ const state:RootStateType  = {
             {id: 5, message: 'Hello'},
         ],
     },
-    sideBar : {}
+    sideBar: {}
 }
-export const addPost = (postText: string )=> {
-    const newPost:PostsType = {
+export const addPost = (postText: string) => {
+    const newPost: PostsType = {
         id: 5,
         message: state.profilePage.newPostText,
         likesCount: 0
     }
     state.profilePage.posts.push(newPost)
     state.profilePage.newPostText = ''
-    renderTree(state)
+    renderTree()
 }
 
-export const changeNewPostText = (NewText :string) =>{
+export const changeNewPostText = (NewText: string) => {
     state.profilePage.newPostText = NewText
-    renderTree(state)
+    renderTree()
 }
 
-
+export const subscribe = (observer: () => void) => {
+    renderTree = observer         //observer - наблюдатель
+}
 
 export default state;

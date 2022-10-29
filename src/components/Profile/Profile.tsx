@@ -5,17 +5,16 @@ import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import {ActionsTypes, ProfilePageType} from "../../redux/state";
 
+type PostsType = {
+    id: number
+    message: string
+    likesCount: number
+}
 type ProfilePropsType = {
     state: ProfilePageType
     // addPost: (postText: string)=>void
     // changeNewPost: (newText: string)=>void
     dispatch:(action:ActionsTypes)=>void
-}
-
-type PostsType = {
-    id: number
-    message: string
-    likesCount: number
 }
 
 const Profile = (props:ProfilePropsType) => {

@@ -19,7 +19,10 @@ const root = ReactDOM.createRoot(
     );
 }
 renderTree(/*store.getState()*/)
+
 store.subscribe(renderTree)
+console.log('rerendermyTree')
+//не ререндерит страницу
 
 
 

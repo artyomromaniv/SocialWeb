@@ -12,12 +12,11 @@ type PropsType = {
     store: StoreType
     dispatch:(action:ActionsTypes)=>void
     state: RootStateType
-}
-
+   }
 type AppPropsType = {
     state: RootStateType
     addPost: (postText: string)=>void
-    changeNewPostText:(NewText :string)=>void
+    changeNewPostText:(newText :string)=>void
 }
 
 const App = (props: PropsType) => {
@@ -30,11 +29,11 @@ const App = (props: PropsType) => {
                 <div className={'app-wrapper-content'}>
                     <Routes>
                         <Route path='/dialogs/*' element={<Dialogs state={props.store._state.dialogsPage}/>}/>
-                        <Route path='/profile' element={<Profile state={props.store._state.profilePage}
-                                                                 dispatch={props.store.dispatch.bind(props.store)}
+                        <Route path='/profile' element={<Profile state={props.state.profilePage}
+                                                                 //state={props.store._state.profilePage}
+                                                                 dispatch={props.dispatch}
                                                                  // addPost={props.addPost}
                                                                  // changeNewPost={props.changeNewPostText}
-
                         />}
                         />
                     </Routes>

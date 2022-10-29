@@ -11,12 +11,14 @@ const root = ReactDOM.createRoot(
  const renderTree = (/*state: RootStateType*/)=>{
     root.render(
         <React.StrictMode>
-            < App state={store.getState()} addPost={store.addPost.bind(store)} changeNewPostText={store.changeNewPostText.bind(store)} />
+            < App state={store.getState()}
+                  dispatch={store.dispatch.bind(store)}
+                   store={store}
+            />
         </React.StrictMode>
     );
 }
 renderTree(/*store.getState()*/)
-
 store.subscribe(renderTree)
 
 

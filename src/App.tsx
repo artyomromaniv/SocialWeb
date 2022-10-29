@@ -6,8 +6,11 @@ import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import state, {changeNewPostText, PostsType, RootStateType} from "./redux/state";
+import state, {RootStateType, StoreType} from "./redux/state";
 
+type PropsType = {
+    store: StoreType
+}
 
 type AppPropsType = {
     state: RootStateType

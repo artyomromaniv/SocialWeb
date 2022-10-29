@@ -1,6 +1,6 @@
 import React from 'react';
 import reportWebVitals from './reportWebVitals';
-import state, {addPost, changeNewPostText, RootStateType, subscribe} from "./redux/state";
+import store, {RootStateType} from "./redux/state";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 
@@ -8,16 +8,16 @@ const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 
- const renderTree = (/*state:RootStateType*/)=>{
+ const renderTree = (/*state: RootStateType*/)=>{
     root.render(
         <React.StrictMode>
-            < App state={state} addPost={addPost} changeNewPostText={changeNewPostText} />
+            < App state={store.getState()} addPost={store.addPost.bind(store)} changeNewPostText={store.changeNewPostText.bind(store)} />
         </React.StrictMode>
     );
 }
-renderTree()
+renderTree(/*store.getState()*/)
 
-subscribe(renderTree)
+store.subscribe(renderTree)
 
 
 

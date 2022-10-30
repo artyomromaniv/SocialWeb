@@ -3,9 +3,39 @@ export type StoreType = {
     _callSubscriber: (_state: RootStateType) => void
     // changeNewPostText: (newText: string) => void
     // addPost: (postText: string) => void
-    subscribe: (observer: () => void) => void
+    subscribe: (observer: (state: RootStateType) => void) => void
     getState: () => RootStateType
     dispatch: (action: ActionsTypes) => void
+}
+
+export type PostsType = {
+    id:  number
+    message: string
+    likesCount: number
+}
+export type DialogsType = {
+    id:  number
+    name: string
+}
+export type MessagesType = {
+    id:  number
+    message: string
+}
+export type ProfilePageType = {
+    newPostText: string
+    posts: Array<PostsType>
+}
+export type DialogsPage = {
+    dialogs: Array<DialogsType>
+    messages: Array<MessagesType>
+    newMessageBody : string
+}
+export type SideBarType = {}
+//общая типизация всех типов данных в стейте
+export type RootStateType = {
+    profilePage: ProfilePageType
+    dialogsPage: DialogsPage
+    sideBar: SideBarType
 }
 
 export type ActionsTypes = ReturnType<typeof onPostChangeAC> | ReturnType<typeof addPostAC>
@@ -53,6 +83,7 @@ let store: StoreType = {
                 {id: 4, message: 'Yo'},
                 {id: 5, message: 'Hello'},
             ],
+            newMessageBody: '',
         },
         sideBar: {}
     },
@@ -63,8 +94,8 @@ let store: StoreType = {
     getState() {
         return this._state
     },
-    subscribe(observer: () => void) {
-        this.subscribe = observer         //observer - наблюдатель
+    subscribe(observer: (state: RootStateType) => void) {
+        this._callSubscriber = observer         //observer - наблюдатель
     },
 
     // addPost(postText: string) {
@@ -85,9 +116,8 @@ let store: StoreType = {
     dispatch(action: ActionsTypes) {
 
         if (action.type === 'ADD-POST') {
-            console.log("dispatch render add")
             const newPost: PostsType = {
-                id: 5,
+                id: 3, //Math.random().toString(16).slice(2) создаёт уникальный id
                 message: this._state.profilePage.newPostText,
                 likesCount: 0
             }
@@ -95,73 +125,44 @@ let store: StoreType = {
             this._state.profilePage.newPostText = ''
             this._callSubscriber(this._state)
         } else if (action.type === "CHANGE-NEW-POST-TEXT") {
-            console.log("dispatch render change")
+            console.log("change new post text", action.newText)
             this._state.profilePage.newPostText = action.newText
             this._callSubscriber(this._state)
         }
     }
 }
 
-export type PostsType = {
-    id: number
-    message: string
-    likesCount: number
-}
-export type DialogsType = {
-    id: number
-    name: string
-}
-export type MessagesType = {
-    id: number
-    message: string
-}
-export type ProfilePageType = {
-    newPostText: string
-    posts: Array<PostsType>
-}
-export type DialogsPage = {
-    dialogs: Array<DialogsType>
-    messages: Array<MessagesType>
-}
-export type SideBarType = {}
-//общая типизация всех типов данных в стейте
-export type RootStateType = {
-    profilePage: ProfilePageType
-    dialogsPage: DialogsPage
-    sideBar: SideBarType
-}
-
 //сам стейт
-let state: RootStateType = {
-    profilePage: {
-        newPostText: '',
-        posts: [
-            {id: 1, message: 'Hi,How is your day?', likesCount: 12},
-            {id: 2, message: 'How are you?', likesCount: 8},
-            {id: 3, message: 'HEy?', likesCount: 25},
-            {id: 4, message: 'yo yo Yo?', likesCount: 10},
-            {id: 5, message: 'Blabala', likesCount: 143},
-        ],
-    },
-    dialogsPage: {
-        dialogs: [
-            {id: 1, name: 'Artyom'},
-            {id: 2, name: 'Nadya'},
-            {id: 3, name: 'Roman'},
-            {id: 4, name: 'Elena'},
-            {id: 5, name: 'Pavel'},
-            {id: 6, name: 'Olga'},
-        ],
-        messages: [
-            {id: 1, message: 'Hi'},
-            {id: 2, message: 'How is your day?'},
-            {id: 3, message: 'Yo'},
-            {id: 4, message: 'Yo'},
-            {id: 5, message: 'Hello'},
-        ],
-    },
-    sideBar: {}
-}
+// let state: RootStateType = {
+//     profilePage: {
+//         newPostText: '',
+//         posts: [
+//             {id: 1, message: 'Hi,How is your day?', likesCount: 12},
+//             {id: 2, message: 'How are you?', likesCount: 8},
+//             {id: 3, message: 'HEy?', likesCount: 25},
+//             {id: 4, message: 'yo yo Yo?', likesCount: 10},
+//             {id: 5, message: 'Blabala', likesCount: 143},
+//         ],
+//     },
+//     dialogsPage: {
+//         dialogs: [
+//             {id: 1, name: 'Artyom'},
+//             {id: 2, name: 'Nadya'},
+//             {id: 3, name: 'Roman'},
+//             {id: 4, name: 'Elena'},
+//             {id: 5, name: 'Pavel'},
+//             {id: 6, name: 'Olga'},
+//         ],
+//         messages: [
+//             {id: 1, message: 'Hi'},
+//             {id: 2, message: 'How is your day?'},
+//             {id: 3, message: 'Yo'},
+//             {id: 4, message: 'Yo'},
+//             {id: 5, message: 'Hello'},
+//         ],
+//     },
+//     sideBar: {}
+// }
 
 export default store;
 // window.store = store;

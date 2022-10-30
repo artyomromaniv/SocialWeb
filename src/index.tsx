@@ -8,22 +8,16 @@ const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 
- const renderTree = (/*state: RootStateType*/)=>{
+ const renderTree = (state: RootStateType)=>{
     root.render(
-        <React.StrictMode>
-            < App state={store.getState()}
+            <App state={state}
                   dispatch={store.dispatch.bind(store)}
                    store={store}
             />
-        </React.StrictMode>
     );
 }
-renderTree(/*store.getState()*/)
-
+renderTree(store.getState())
 store.subscribe(renderTree)
-console.log('rerendermyTree')
-//не ререндерит страницу
-
 
 
 // If you want to start measuring performance in your app, pass a function

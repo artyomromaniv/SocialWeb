@@ -5,7 +5,7 @@ import Post from "./Posts/Post";
 import {ActionsTypes, addPostAC, onPostChangeAC} from "../../../redux/state";
 
 type MyPostsPropsType = {
-    id: number
+    id:  number
     message: string
     likesCount: number
 }
@@ -17,10 +17,9 @@ type MyPostsType = {
     dispatch:(action:ActionsTypes)=>void
 }
 
-
 const MyPosts = (props:MyPostsType) => {
     let postsElements = props.posts.map(p =>  (<Post key={p.id} message={p.message} id={p.id} likesCount={p.likesCount}/>))
-
+    console.log(props.newPostText)
     const addPost = () => {
         // props.addPost(props.newPostText)
         props.dispatch(addPostAC(props.newPostText))

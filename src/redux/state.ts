@@ -1,3 +1,7 @@
+import profileReducer from "./profileReducer";
+import dialogsReducer from "./dialogsReducer";
+import sidebarReducer from "./sidebarReducer";
+
 const ADD_POST = "ADD-POST"
 const CHANGE_NEW_POST_TEXT = "CHANGE-NEW-POST-TEXT"
 
@@ -70,7 +74,7 @@ let store: StoreType = {
                 {id: 3, name: 'Roman'},
                 {id: 4, name: 'Elena'},
                 {id: 5, name: 'Pavel'},
-                {id: 6, name: 'Olga'},
+                {id: 6, name: 'Kostya'},
             ],
             messages: [
                 {id: 1, message: 'Hi'},
@@ -95,28 +99,34 @@ let store: StoreType = {
 
     dispatch(action: ActionsTypes) {
 
-        if (action.type === ADD_POST) {
-            const newPost: PostsType = {
-                id: Math.random()*1000000000000 + Number(new Date()),
-                message: this._state.profilePage.newPostText,
-                likesCount: 0
-            }
-            console.log(newPost.id)
-            this._state.profilePage.posts.push(newPost)
-            this._state.profilePage.newPostText = ''
-            this._callSubscriber(this._state)
-        } else if (action.type === CHANGE_NEW_POST_TEXT) {
-            this._state.profilePage.newPostText = action.newText
-            this._callSubscriber(this._state)
-        } else if (action.type === UPDATE_NEW_MESSAGE_POST) {
-            this._state.dialogsPage.newMessageBody = action.newText
-            this._callSubscriber(this._state)
-        } else if (action.type === SEND_MESSAGE) {
-            let body = this._state.dialogsPage.newMessageBody
-            this._state.dialogsPage.newMessageBody = ""
-            this._state.dialogsPage.messages.push({id: 6, message: body})
-            this._callSubscriber(this._state)
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action)
+        this._state.sideBar = sidebarReducer(this._state.sideBar, action)
+        //уведомляем подписчика
+        this._callSubscriber(this._state)
+
+        // if (action.type === ADD_POST) {
+        //     const newPost: PostsType = {
+        //         id: Math.random()*1000000000000 + Number(new Date()),
+        //          message: this._state.profilePage.newPostText,
+        //          likesCount: 0
+        //     }
+        //     console.log(newPost.id)
+        //     this._state.profilePage.posts.push(newPost)
+        //     this._state.profilePage.newPostText = ''
+        //     this._callSubscriber(this._state)
+        // } else if (action.type === CHANGE_NEW_POST_TEXT) {
+        //     this._state.profilePage.newPostText = action.newText
+        //     this._callSubscriber(this._state)
+        // } else if (action.type === UPDATE_NEW_MESSAGE_POST) {
+        //     this._state.dialogsPage.newMessageBody = action.newText
+        //     this._callSubscriber(this._state)
+        // } else if (action.type === SEND_MESSAGE) {
+        //     let body = this._state.dialogsPage.newMessageBody
+        //     this._state.dialogsPage.newMessageBody = ""
+        //     this._state.dialogsPage.messages.push({id: 6, message: body})
+        //     this._callSubscriber(this._state)
+        // }
     }
 }
 

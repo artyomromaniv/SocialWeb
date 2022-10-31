@@ -1,12 +1,12 @@
-import profileReducer from "./profileReducer";
-import dialogsReducer from "./dialogsReducer";
+import profileReducer, {addPostAC, onPostChangeAC} from "./profileReducer";
+import dialogsReducer, {sendMessageAC, updateNewMessageBodyAC} from "./dialogsReducer";
 import sidebarReducer from "./sidebarReducer";
 
-const ADD_POST = "ADD-POST"
-const CHANGE_NEW_POST_TEXT = "CHANGE-NEW-POST-TEXT"
-
-const UPDATE_NEW_MESSAGE_POST = 'UPDATE_NEW_MESSAGE_BODY'
-const SEND_MESSAGE = 'SEND_MESSAGE'
+// const ADD_POST = "ADD-POST"
+// const CHANGE_NEW_POST_TEXT = "CHANGE-NEW-POST-TEXT"
+//
+// const UPDATE_NEW_MESSAGE_POST = 'UPDATE_NEW_MESSAGE_BODY'
+// const SEND_MESSAGE = 'SEND_MESSAGE'
 
 export type StoreType = {
     _state: RootStateType
@@ -130,30 +130,30 @@ let store: StoreType = {
     }
 }
 
-export const addPostAC = (newPostText: string) => {
-    return {
-        type: ADD_POST,
-        newPostText: newPostText
-    } as const
-}
-export const onPostChangeAC = (newText: string) => {
-    return {
-        type: CHANGE_NEW_POST_TEXT,
-        newText: newText
-    } as const
-}
-
-export const sendMessageAC = () => {
-    return {
-        type: SEND_MESSAGE,
-    } as const
-}
-export const updateNewMessageBodyAC = (newText: string) => {
-    return {
-        type: UPDATE_NEW_MESSAGE_POST,
-        newText,
-    } as const
-}
+// export const addPostAC = (newPostText: string) => {
+//     return {
+//         type: ADD_POST,
+//         newPostText: newPostText
+//     } as const
+// }
+// export const onPostChangeAC = (newText: string) => {
+//     return {
+//         type: CHANGE_NEW_POST_TEXT,
+//         newText: newText
+//     } as const
+// }
+//
+// export const sendMessageAC = () => {
+//     return {
+//         type: SEND_MESSAGE,
+//     } as const
+// }
+// export const updateNewMessageBodyAC = (newText: string) => {
+//     return {
+//         type: UPDATE_NEW_MESSAGE_POST,
+//         newText,
+//     } as const
+// }
 
 export default store;
 // window.store = store;

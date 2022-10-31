@@ -1,4 +1,4 @@
-import {ActionsTypes, PostsType, ProfilePageType, StoreType} from "./state";
+import {ActionsTypes, PostsType, ProfilePageType, } from "./state";
 
 const ADD_POST = "ADD-POST"
 const CHANGE_NEW_POST_TEXT = "CHANGE-NEW-POST-TEXT"
@@ -22,7 +22,6 @@ const CHANGE_NEW_POST_TEXT = "CHANGE-NEW-POST-TEXT"
         default:
             return state
     }
-
     // if (action.type === ADD_POST) {
     //     const newPost: PostsType = {
     //         id: Math.random()*1000000000000 + Number(new Date()),
@@ -37,4 +36,18 @@ const CHANGE_NEW_POST_TEXT = "CHANGE-NEW-POST-TEXT"
     // }
     // return state
 }
+
+export const addPostAC = (newPostText: string) => {
+    return {
+        type: ADD_POST,
+        newPostText: newPostText
+    } as const
+}
+export const onPostChangeAC = (newText: string) => {
+    return {
+        type: CHANGE_NEW_POST_TEXT,
+        newText: newText
+    } as const
+}
+
 export default profileReducer

@@ -10,10 +10,7 @@ const root = ReactDOM.createRoot(
 
  const renderTree = (state: RootStateType)=>{
     root.render(
-            <App state={state}
-                  dispatch={store.dispatch.bind(store)}
-                   store={store}
-            />
+            <App dispatch={store.dispatch.bind(store)} store={store}/>
     );
 }
 renderTree(store.getState())

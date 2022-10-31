@@ -11,16 +11,10 @@ import state, {ActionsTypes, RootStateType, StoreType} from "./redux/state";
 type PropsType = {
     store: StoreType
     dispatch:(action:ActionsTypes)=>void
-    state: RootStateType
    }
-type AppPropsType = {
-    state: RootStateType
-    addPost: (postText: string)=>void
-    changeNewPostText:(newText :string)=>void
-}
 
 const App = (props: PropsType) => {
-
+    const state = props.store.getState()
     return (
         <BrowserRouter>
             <div className={'app-wrapper'}>
@@ -28,12 +22,9 @@ const App = (props: PropsType) => {
                 <Navbar/>
                 <div className={'app-wrapper-content'}>
                     <Routes>
-                        <Route path='/dialogs/*' element={<Dialogs state={props.state.dialogsPage}/>}/>
-                        <Route path='/profile' element={<Profile state={props.state.profilePage}
-                                                                 //state={props.store._state.profilePage}
+                        <Route path='/dialogs/*' element={<Dialogs state={props.store}/>}/>
+                        <Route path='/profile' element={<Profile state={state}
                                                                  dispatch={props.dispatch}
-                                                                 // addPost={props.addPost}
-                                                                 // changeNewPost={props.changeNewPostText}
                         />}
                         />
                     </Routes>

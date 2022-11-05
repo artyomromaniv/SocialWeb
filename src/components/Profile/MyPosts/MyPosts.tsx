@@ -2,7 +2,8 @@ import React, {ChangeEvent} from 'react';
 import './MyPosts.module.css';
 import s from "./MyPosts.module.css";
 import Post from "./Posts/Post";
-import {ActionsTypes, addPostAC, onPostChangeAC} from "../../../redux/state";
+import {ActionsTypes } from "../../../redux/store";
+import {addPostAC, onPostChangeAC} from "../../../redux/profileReducer"
 
 type MyPostsPropsType = {
     id:  number
@@ -20,13 +21,9 @@ const MyPosts = (props:MyPostsType) => {
 
     const addPost = () => {
         props.dispatch(addPostAC(props.newPostText))
-        // props.addPost(props.newPostText)
-     /*   props.dispatch({type : "ADD-POST", newPostText: props.newPostText})*/
     }
     const onPostChange = (e:ChangeEvent<HTMLTextAreaElement>) =>{
         props.dispatch(onPostChangeAC(e.currentTarget.value))
-        // props.changeNewPost(e.currentTarget.value)
-        // props.dispatch({type: "CHANGE-NEW-POST-TEXT", newText: e.currentTarget.value})
     }
 
     return (

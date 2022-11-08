@@ -1,12 +1,10 @@
-import profileReducer, {addPostAC, onPostChangeAC} from "./profileReducer";
-import dialogsReducer, {sendMessageAC, updateNewMessageBodyAC} from "./dialogsReducer";
+import {addPostAC, onPostChangeAC, profileReducer} from "./profileReducer";
+import {dialogsReducer, sendMessageAC, updateNewMessageBodyAC} from "./dialogsReducer";
 import {sidebarReducer} from "./sidebarReducer";
 
 export type StoreType = {
     _state: RootStateType
     _callSubscriber: (_state: RootStateType) => void
-    // changeNewPostText: (newText: string) => void
-    // addPost: (postText: string) => void
     subscribe: (observer: (state: RootStateType) => void) => void
     getState: () => RootStateType
     dispatch: (action: ActionsTypes) => void
@@ -88,7 +86,7 @@ let store: StoreType = {
         return this._state
     },
     subscribe(observer: (state: RootStateType) => void) {
-        this._callSubscriber = observer         //observer - наблюдатель
+        this._callSubscriber = observer     //observer - наблюдатель
     },
 
     dispatch(action: ActionsTypes) {

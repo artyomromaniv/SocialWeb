@@ -7,13 +7,14 @@ import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import state, {ActionsTypes, RootStateType, StoreType} from "./redux/store";
+import {TReduxStore} from "./redux/reduxStore";
 
-type PropsType = {
-    store: StoreType
+type AppPropsType = {
+    store: TReduxStore
     dispatch:(action:ActionsTypes)=>void
    }
 
-const App = (props: PropsType) => {
+const App = (props: AppPropsType) => {
     const state = props.store.getState()
     return (
         <BrowserRouter>
@@ -22,7 +23,7 @@ const App = (props: PropsType) => {
                 <Navbar/>
                 <div className={'app-wrapper-content'}>
                     <Routes>
-                        <Route path='/dialogs/*' element={<Dialogs state={props.store}/>}/>
+                        <Route path='/dialogs/*' element={<Dialogs store={props.store}/>}/>
                         <Route path='/profile' element={<Profile state={state}
                                                                  dispatch={props.dispatch}
                         />}

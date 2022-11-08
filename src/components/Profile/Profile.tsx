@@ -4,6 +4,7 @@ import s from './Profile.module.css';
 import MyPosts from './MyPosts/MyPosts';
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import {ActionsTypes, ProfilePageType, RootStateType} from "../../redux/store";
+import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 type ProfilePropsType = {
     state: RootStateType
@@ -14,7 +15,8 @@ const Profile = (props:ProfilePropsType) => {
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts
+
+            <MyPostsContainer
                 posts={props.state.profilePage.posts}
                 newPostText={props.state.profilePage.newPostText}
                 dispatch={props.dispatch}

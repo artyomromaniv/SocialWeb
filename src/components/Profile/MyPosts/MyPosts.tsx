@@ -13,17 +13,21 @@ type MyPostsPropsType = {
 type MyPostsType = {
     newPostText: string
     posts : Array<MyPostsPropsType>
-    dispatch:(action:ActionsTypes)=>void
+    //dispatch:(action:ActionsTypes)=>void
+    addPost:()=>void
+    onPostChange:(text:string)=>void
 }
 
 const MyPosts = (props:MyPostsType) => {
     let postsElements = props.posts.map(p =>  (<Post key={p.id} message={p.message} id={p.id} likesCount={p.likesCount}/>))
 
     const addPost = () => {
-        props.dispatch(addPostAC(props.newPostText))
+        props.addPost()
     }
-    const onPostChange = (e:ChangeEvent<HTMLTextAreaElement>) =>{
-        props.dispatch(onPostChangeAC(e.currentTarget.value))
+
+    let onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        let text = e.currentTarget.value
+        props.onPostChange(text)
     }
 
     return (

@@ -13,7 +13,7 @@ let rootReducer = combineReducers({
 const store = createStore(rootReducer)
 
 export type TRootState = typeof rootReducer //стейт
-export type TReduxStore = typeof store //сторе
+export type TReduxStore = typeof store //стор
 
 
 

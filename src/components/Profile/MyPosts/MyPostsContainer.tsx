@@ -1,5 +1,5 @@
 import React, {ChangeEvent} from 'react';
-import './MyPosts.module.css';;
+import './MyPosts.module.css';
 import {ActionsTypes } from "../../../redux/store";
 import {addPostAC, onPostChangeAC} from "../../../redux/profileReducer"
 import MyPosts from "./MyPosts";
@@ -24,7 +24,7 @@ const MyPostsContainer = (props:MyPostsType) => {
         props.dispatch(action)
     }
     return (
-      <MyPosts newPostText={props.newPostText} posts={props.posts}  addPost={addPost} onPostChange={onPostChange}/>
+      <MyPosts newPostText={props.newPostText} posts={props.posts} addPost={addPost} onPostChange={onPostChange}/>
     )
 }
 

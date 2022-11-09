@@ -8,6 +8,7 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import state, {ActionsTypes, RootStateType, StoreType} from "./redux/store";
 import {TReduxStore} from "./redux/reduxStore";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 type AppPropsType = {
     store: TReduxStore
@@ -23,7 +24,7 @@ const App = (props: AppPropsType) => {
                 <Navbar/>
                 <div className={'app-wrapper-content'}>
                     <Routes>
-                        <Route path='/dialogs/*' element={<Dialogs store={props.store}/>}/>
+                        <Route path='/dialogs/*' element={<DialogsContainer store={props.store}/>}/>
                         <Route path='/profile' element={<Profile state={state}
                                                                  dispatch={props.dispatch}
                         />}

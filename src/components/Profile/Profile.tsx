@@ -15,7 +15,6 @@ const Profile = (props:ProfilePropsType) => {
     return (
         <div>
             <ProfileInfo/>
-
             <MyPostsContainer
                 posts={props.state.profilePage.posts}
                 newPostText={props.state.profilePage.newPostText}

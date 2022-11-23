@@ -18,7 +18,7 @@ type AppPropsType = {
 const App = (props: AppPropsType) => {
     const state = props.store.getState()
     return (
-        <BrowserRouter>
+        //<BrowserRouter>
             <div className={'app-wrapper'}>
                 <Header/>
                 <Navbar/>
@@ -32,7 +32,7 @@ const App = (props: AppPropsType) => {
                     </Routes>
                 </div>
             </div>
-        </BrowserRouter>
+        //</BrowserRouter>
     );
 }
 

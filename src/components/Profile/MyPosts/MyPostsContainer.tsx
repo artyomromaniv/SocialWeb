@@ -3,7 +3,7 @@ import './MyPosts.module.css';
 import {ActionsTypes} from "../../../redux/store";
 import {addPostAC, onPostChangeAC} from "../../../redux/profileReducer"
 import MyPosts from "./MyPosts";
-import StoreContext from '../../../StoreContext';
+import {StoreContext} from '../../../StoreContext';
 
 type MyPostsPropsType = {
     id: number
@@ -20,7 +20,7 @@ const MyPostsContainer = (props: MyPostsType) => {
 
     return (
         <StoreContext.Consumer>
-            { (value) =>{
+            { () =>{
             const addPost = () => {
             props.dispatch(addPostAC(props.newPostText))
         }

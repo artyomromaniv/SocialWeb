@@ -1,20 +1,20 @@
 import React from 'react';
 import reportWebVitals from './reportWebVitals';
-import store from "./redux/reduxStore";
+import store, {AppStateType} from "./redux/reduxStore";
 import  {RootStateType} from "./redux/store";
 import ReactDOM from "react-dom/client";
 import App from "./App";
 import {BrowserRouter} from "react-router-dom";
-import StoreContext, { Provider } from './StoreContext';
+import  { Provider } from './StoreContext';
 
 const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 
- let renderTree = (state: RootStateType)=>{
+ let renderTree = (state: AppStateType)=>{
     root.render(
         <BrowserRouter>
-            <Provider store={store}>
+            <Provider store={store} >
                 <App dispatch={store.dispatch.bind(store)} store={store} />
             </Provider>
         </BrowserRouter>

@@ -1,12 +1,11 @@
-import React from "react";
-import { StoreType} from "./redux/store";
-import store from "./redux/reduxStore";
+import React, {createContext} from "react";
+import  {TReduxStore} from "./redux/reduxStore";
 
 
-const StoreContext = React.createContext({} as StoreType)
+export const StoreContext = createContext({} as TReduxStore)
 
 export type ProviderType = {
-    store: StoreType
+    store: TReduxStore
     children: React.ReactNode
 }
 
@@ -18,4 +17,3 @@ export const Provider = (props:ProviderType) => {
     )
 }
 
-export default StoreContext

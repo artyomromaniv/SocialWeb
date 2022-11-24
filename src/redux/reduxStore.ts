@@ -15,6 +15,8 @@ const store = createStore(rootReducer)
 export type TRootState = typeof rootReducer //стейт
 export type TReduxStore = typeof store //стор
 
+export type AppStateType = ReturnType<typeof rootReducer>
+
 
 
 export default store

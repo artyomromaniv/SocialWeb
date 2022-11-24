@@ -6,7 +6,7 @@ import {sendMessageAC, updateNewMessageBodyAC} from "../../redux/dialogsReducer"
 import {StoreType} from "../../redux/store"
 import store, {TReduxStore} from "../../redux/reduxStore";
 import Dialogs from "./Dialogs";
-import StoreContext from "../../StoreContext";
+import {StoreContext} from "../../StoreContext";
 
 type DialogsType = {
     store: TReduxStore
@@ -16,7 +16,7 @@ const DialogsContainer = (props: DialogsType) => {
 
     return (
         <StoreContext.Consumer>
-            { (value) => {
+            { () => {
                 let state = store.getState().dialogsPage
 
                 const sendMessageClickHandler = () => {

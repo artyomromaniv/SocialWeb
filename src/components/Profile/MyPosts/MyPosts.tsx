@@ -2,6 +2,7 @@ import React, {ChangeEvent} from 'react';
 import './MyPosts.module.css';
 import s from "./MyPosts.module.css";
 import Post from "./Posts/Post";
+import {MyPostsMainPropsType} from "./MyPostsContainer";
 
 
 type MyPostsPropsType = {
@@ -9,18 +10,19 @@ type MyPostsPropsType = {
     message: string
     likesCount: number
 }
-type MyPostsType = {
-    newPostText: string
-    posts : Array<MyPostsPropsType>
-    //dispatch:(action:ActionsTypes)=>void
-    addPost:()=>void
-    onPostChange:(text:string)=>void
-}
+// type MyPostsType = {
+//     newPostText: string
+//     posts : Array<MyPostsPropsType>
+//     //dispatch:(action:ActionsTypes)=>void
+//     addPost:(newPostText:string)=>void
+//     onPostChange:(text:string)=>void
+//
+// }
 
-const MyPosts = (props:MyPostsType) => {
+const MyPosts = (props:MyPostsMainPropsType) => {
     let postsElements = props.posts.map(p =>  (<Post key={p.id} message={p.message} id={p.id} likesCount={p.likesCount}/>))
     const addPost = () => {
-        props.addPost()
+        props.addPost(props.newPostText)
     }
     const onPostChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let text = e.currentTarget.value

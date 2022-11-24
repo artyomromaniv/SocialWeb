@@ -9,22 +9,21 @@ export type StoreType = {
     getState: () => RootStateType
     dispatch: (action: ActionsTypes) => void
 }
-export type PostsType = {
+type PostsType = {
     id: number
     message: string
     likesCount: number
 }
-export type DialogsType = {
+ type DialogsType = {
     id: number
     name: string
-
 }
-export type MessagesType = {
+ type MessagesType = {
     id: number
     message: string
 
 }
-export type ProfilePageType = {
+ type ProfilePageType = {
     newPostText: string
     posts: Array<PostsType>
 }

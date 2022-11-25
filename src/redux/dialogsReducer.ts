@@ -36,14 +36,21 @@ export type InitialStateType = typeof initialState
 export const dialogsReducer = (state: InitialStateType = initialState, action: ActionsTypes):InitialStateType => {
 
     switch(action.type) {
+
         case UPDATE_NEW_MESSAGE_POST:
-            state.newMessageBody = action.newText
-            return state
+           return  {
+                ...state,
+                newMessageBody: action.newText
+            };
+
         case SEND_MESSAGE:
             let body = state.newMessageBody
-            state.newMessageBody = ""
-            state.messages.push({id: Math.random() * 1000000000000 + Number(new Date()), message: body})
-            return state
+            return {
+                ...state,
+                newMessageBody : "",
+                messages : [...state.messages,{id: Math.random() * 1000000000000 + Number(new Date()), message: body}]
+            };
+
         default:
             return state
     }

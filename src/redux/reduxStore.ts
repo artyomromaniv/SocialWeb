@@ -12,10 +12,13 @@ let rootReducer = combineReducers({
 
 //export type TRootState = typeof rootReducer //стейт
 export type TReduxStore = typeof store //стор
+
 export type AppStateType = ReturnType<typeof rootReducer>//стейт
 
 
 const store = createStore(rootReducer)
+
+//window.store = store
 
 
 

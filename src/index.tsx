@@ -11,20 +11,20 @@ const root = ReactDOM.createRoot(
     document.getElementById('root') as HTMLElement
 );
 
- let renderTree = (state: AppStateType)=>{
-    root.render(
+ // let renderTree = (state: AppStateType)=>{
+     root.render(
         <BrowserRouter>
             <Provider store={store} >
                 <App dispatch={store.dispatch.bind(store)} store={store} />
             </Provider>
         </BrowserRouter>
     );
-}
-renderTree(store.getState())
-store.subscribe(()=>{
-    let state = store.getState()
-    renderTree(state)
-})
+//}
+// renderTree(store.getState())
+// store.subscribe(()=>{
+//     let state = store.getState()
+//     renderTree(state)
+// })
 
 
 // If you want to start measuring performance in your app, pass a function

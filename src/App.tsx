@@ -8,6 +8,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import state, {ActionsTypes, RootStateType, StoreType} from "./redux/store";
 import {TReduxStore} from "./redux/reduxStore";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import {Users} from "./components/Users/Users";
 
 type AppPropsType = {
     store: TReduxStore
@@ -25,9 +26,9 @@ const App = (props: AppPropsType) => {
                     <Routes>
                         <Route path='/dialogs/*' element={<DialogsContainer store={props.store}/>}/>
                         <Route path='/profile' element={<Profile state={state}
-                                                                 dispatch={props.dispatch}
-                        />}
+                                                                 dispatch={props.dispatch} />}
                         />
+                        <Route path ='/users' element={<Users/>}/>
                     </Routes>
                 </div>
             </div>

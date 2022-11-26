@@ -1,6 +1,7 @@
 import {addPostAC, onPostChangeAC, profileReducer} from "./profileReducer";
 import {dialogsReducer, sendMessageAC, updateNewMessageBodyAC} from "./dialogsReducer";
 import {sidebarReducer} from "./sidebarReducer";
+import {followAC, unFollowAC} from "./usersReducer";
 
 export type StoreType = {
     _state: RootStateType
@@ -44,6 +45,8 @@ export type ActionsTypes = ReturnType<typeof onPostChangeAC>
     | ReturnType<typeof addPostAC>
     | ReturnType<typeof updateNewMessageBodyAC>
     | ReturnType<typeof sendMessageAC>
+    | ReturnType<typeof followAC>
+    | ReturnType<typeof unFollowAC>
 
 
 let store: StoreType = {

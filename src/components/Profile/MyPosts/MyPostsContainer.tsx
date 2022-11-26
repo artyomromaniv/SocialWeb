@@ -1,11 +1,10 @@
 import React, {ChangeEvent} from 'react';
 import './MyPosts.module.css';
-import {ActionsTypes} from "../../../redux/store";
 import {addPostAC, onPostChangeAC, ProfilePageType} from "../../../redux/profileReducer"
 import MyPosts from "./MyPosts";
 //import {StoreContext} from '../../../StoreContext';
 import {connect} from "react-redux";
-import {AppStateType} from "../../../redux/reduxStore";
+import {ActionsTypes, AppStateType} from "../../../redux/reduxStore";
 import { Dispatch } from 'redux';
 
 type MyPostsPropsType = {

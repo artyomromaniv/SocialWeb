@@ -1,4 +1,4 @@
-import {ActionsTypes} from "./store";
+import {ActionsTypes} from "./reduxStore";
 
 export const UPDATE_NEW_MESSAGE_POST = 'UPDATE_NEW_MESSAGE_BODY'
 export const SEND_MESSAGE = 'SEND_MESSAGE'

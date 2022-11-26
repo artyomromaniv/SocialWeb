@@ -5,10 +5,11 @@ import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import state, {ActionsTypes, RootStateType, StoreType} from "./redux/store";
-import {TReduxStore} from "./redux/reduxStore";
+import state, { RootStateType, StoreType} from "./redux/store";
+import {ActionsTypes, TReduxStore} from "./redux/reduxStore";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import {Users} from "./components/Users/Users";
+import UsersContainer from "./components/Users/UsersContainer";
 
 type AppPropsType = {
     store: TReduxStore
@@ -28,7 +29,7 @@ const App = (props: AppPropsType) => {
                         <Route path='/profile' element={<Profile state={state}
                                                                  dispatch={props.dispatch} />}
                         />
-                        <Route path ='/users' element={<Users/>}/>
+                        <Route path ='/users' element={<UsersContainer/>}/>
                     </Routes>
                 </div>
             </div>

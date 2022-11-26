@@ -1,4 +1,4 @@
-import {ActionsTypes } from "./store";
+import {ActionsTypes } from "./reduxStore";
 
 export const ADD_POST = "ADD-POST"
 export const CHANGE_NEW_POST_TEXT = "CHANGE-NEW-POST-TEXT"

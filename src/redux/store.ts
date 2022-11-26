@@ -41,7 +41,7 @@ export type RootStateType = {
     sideBar: SideBarType
 }
 
-export type ActionsTypes = ReturnType<typeof onPostChangeAC>
+type ActionsTypes = ReturnType<typeof onPostChangeAC>
     | ReturnType<typeof addPostAC>
     | ReturnType<typeof updateNewMessageBodyAC>
     | ReturnType<typeof sendMessageAC>

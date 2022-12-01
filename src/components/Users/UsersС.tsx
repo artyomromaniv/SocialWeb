@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 import styles from './users.module.css';
 import {MainUsersContainerType} from "./UsersContainer";
 import axios from "axios";
@@ -6,22 +6,21 @@ import userPhoto from "./../../assets/images/user.png";
 import {UsersType} from "../../redux/usersReducer";
 
 
-export class UsersC extends React.Component<MainUsersContainerType, UsersType>{
+export class UsersC extends React.Component<MainUsersContainerType, UsersType> {
 
-     getUsers = () => {
-        if (this.props.users.length === 0) {
+    constructor(props:MainUsersContainerType) {
+        super(props);
 
-            axios.get('https://social-network.samuraijs.com/api/1.0/users')
-                .then(response => {
-                    this.props.setUsers(response.data.items)
-                });
-        }
+        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+            .then(response => {
+                this.props.setUsers(response.data.items)
+            });
     }
 
-    render() {
+    render(): ReactNode {
         return (
             <div>
-                <button onClick={this.getUsers}>get users</button>
+
                 {
                     this.props.users.map(u => <div key={u.id}>
                     <span>

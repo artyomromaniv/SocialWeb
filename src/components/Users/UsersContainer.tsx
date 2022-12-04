@@ -9,6 +9,9 @@ import {UsersC} from "./UsersС";
 
 type MapStatePropsType = {
     users: Array<UsersType>
+    pageSize: number
+    totalUsersCount: number
+    currentPage: number
 }
 type mapDispatchToProps = {
     follow:(userId:number)=>void,
@@ -19,7 +22,10 @@ export type MainUsersContainerType = MapStatePropsType & mapDispatchToProps
 
 let mapStateToProps = (state:AppStateType): MapStatePropsType => {
     return{
-        users: state.usersPage.users
+        users: state.usersPage.users,
+        pageSize: state.usersPage.pageSize,
+        totalUsersCount: state.usersPage.totalUsersCount,
+        currentPage: state.usersPage.currentPage
     }
 }
 let mapDispatchToProps = (dispatch: Dispatch):mapDispatchToProps => {

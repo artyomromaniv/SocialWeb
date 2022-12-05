@@ -6,6 +6,8 @@ export const SET_USERS = "SET_USERS";
 export const SET_CURRENT_PAGE ="SET_CURRENT_PAGE";
 export const SET_TOTAL_USERS_COUNT ="SET_TOTAL_USERS_COUNT";
 export const ON_PAGE_CHANGED ="ON_PAGE_CHANGED";
+export const TOGGLE_IS_FETCHING ="TOGGLE_IS_FETCHING";
+
 
 export type LocationType = {
     city: string
@@ -33,7 +35,8 @@ let initialState = {
     users: [] as Array<UsersType>,
     pageSize : 5,
     totalUsersCount:0,
-    currentPage:1
+    currentPage:1,
+    isFetching: true
 }
 
 export type InitialStateType = typeof initialState
@@ -68,6 +71,8 @@ export const usersReducer = (state: InitialStateType = initialState, action: Act
             return {...state, currentPage:action.currentPage}
         case SET_TOTAL_USERS_COUNT  :
             return {...state, totalUsersCount: action.totalCount}
+        case TOGGLE_IS_FETCHING  :
+            return {...state, isFetching: action.isFetching}
         default:
             return state
     }
@@ -79,4 +84,5 @@ export const setUsersAC = (users: Array<UsersType>) => ({type: SET_USERS, users}
 export const setCurrentPageAC = (currentPage:number) => ({type: SET_CURRENT_PAGE, currentPage} as const)
 export const setTotalUsersCountAC = (totalCount: number) => ({type: SET_TOTAL_USERS_COUNT, totalCount} as const)
 export const onPageChangedAC = (p: number) => ({type: ON_PAGE_CHANGED, p} as const)
+export const toggleIsFetchingAC = (isFetching:boolean) => ({type: TOGGLE_IS_FETCHING, isFetching} as const)
 

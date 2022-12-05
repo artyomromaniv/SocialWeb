@@ -5,6 +5,7 @@ export const UNFOLLOW = "UNFOLLOW";
 export const SET_USERS = "SET_USERS";
 export const SET_CURRENT_PAGE ="SET_CURRENT_PAGE";
 export const SET_TOTAL_USERS_COUNT ="SET_TOTAL_USERS_COUNT";
+export const ON_PAGE_CHANGED ="ON_PAGE_CHANGED";
 
 export type LocationType = {
     city: string
@@ -77,4 +78,5 @@ export const unFollowAC = (userId:number) => ({type: UNFOLLOW, userId} as const)
 export const setUsersAC = (users: Array<UsersType>) => ({type: SET_USERS, users} as const)
 export const setCurrentPageAC = (currentPage:number) => ({type: SET_CURRENT_PAGE, currentPage} as const)
 export const setTotalUsersCountAC = (totalCount: number) => ({type: SET_TOTAL_USERS_COUNT, totalCount} as const)
+export const onPageChangedAC = (p: number) => ({type: ON_PAGE_CHANGED, p} as const)
 

@@ -1,16 +1,27 @@
 import React from 'react';
 import styles from "./users.module.css";
 import userPhoto from "../../assets/images/user.png";
-import {MainUsersContainerType, MapStatePropsType} from "./UsersContainer";
+import {MainUsersContainerType} from "./UsersContainer";
 
 export const UsersF = (props:MainUsersContainerType) => {
 
-    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
-    let pages: Array<number> = []
+    //отображаются все страницы с юзерами
+    //let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+    //let pages: Array<number> = []
+    // for (let i = 1; i <= pagesCount; i++) {
+    //     pages.push(i)
+    // }
 
-    for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i)
-    }
+
+    // чтобы отображались не все страницы юзеров
+    const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
+    let fullPages = new Array(pagesCount).fill('').map((e, i) => i + 1)
+    const pages = [...fullPages.slice(props.currentPage - 4 <= 0 ? 0 : props.currentPage - 4, props.currentPage),
+        ...fullPages.slice(props.currentPage, props.currentPage + 3)]
+
+
+
+
 
     return (
         <div>

@@ -2,17 +2,17 @@ import React, {ReactNode} from 'react';
 import {connect} from 'react-redux';
 import {AppStateType} from '../../redux/reduxStore';
 import {Dispatch} from 'redux';
-import {
-    followAC, onPageChangedAC,
-    setCurrentPageAC,
-    setTotalUsersCountAC,
-    setUsersAC, toggleIsFetchingAC,
-    unFollowAC,
+import {follow,
+    onPageChanged,
+    setCurrentPage,
+    setTotalUsersCount,
+    setUsers,
+    toggleIsFetching,
+    unFollow,
     UsersType
 } from '../../redux/usersReducer';
 import axios from 'axios';
 import {UsersF} from './UsersF';
-import preloader from '../../assets/images/Circle-Loading.svg';
 import {Preloader} from "../Common/Preloader/Preloader";
 
 class UsersClassApiComponent extends React.Component<MainUsersContainerType, UsersType> {
@@ -90,32 +90,33 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
         isFetching: state.usersPage.isFetching
     }
 }
-let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToProps => {
-    return {
-        follow: (userId: number) => {
-            dispatch(followAC(userId))
-        },
-        unfollow: (userId: number) => {
-            dispatch(unFollowAC(userId))
-        },
-        setUsers: (users: Array<UsersType>) => {
-            dispatch(setUsersAC(users))
-        },
-        setCurrentPage: (pageNumber: number) => {
-            dispatch(setCurrentPageAC(pageNumber))
-        },
-        setTotalUsersCount: (totalCount: number) => {
-            dispatch(setTotalUsersCountAC(totalCount))
-        },
-        onPageChanged: (p: number) => {
-            dispatch(onPageChangedAC(p))
-        },
-        toggleIsFetching: (isFetching: boolean) => {
-            dispatch(toggleIsFetchingAC(isFetching))
-        }
-    }
-}
+// let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToProps => {
+//     return {
+//         follow: (userId: number) => {
+//             dispatch(followAC(userId))
+//         },
+//         unfollow: (userId: number) => {
+//             dispatch(unFollowAC(userId))
+//         },
+//         setUsers: (users: Array<UsersType>) => {
+//             dispatch(setUsersAC(users))
+//         },
+//         setCurrentPage: (pageNumber: number) => {
+//             dispatch(setCurrentPageAC(pageNumber))
+//         },
+//         setTotalUsersCount: (totalCount: number) => {
+//             dispatch(setTotalUsersCountAC(totalCount))
+//         },
+//         onPageChanged: (p: number) => {
+//             dispatch(onPageChangedAC(p))
+//         },
+//         toggleIsFetching: (isFetching: boolean) => {
+//             dispatch(toggleIsFetchingAC(isFetching))
+//         }
+//     }
+// }
 
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersClassApiComponent);
+const UsersContainer = connect(mapStateToProps, {follow, unFollow, setUsers,
+    setCurrentPage, setTotalUsersCount, onPageChanged, toggleIsFetching})(UsersClassApiComponent);
 
 export default UsersContainer;

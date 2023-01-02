@@ -1,7 +1,6 @@
 import React, {ReactNode} from 'react';
 import {connect} from 'react-redux';
 import {AppStateType} from '../../redux/reduxStore';
-import {Dispatch} from 'redux';
 import {follow,
     onPageChanged,
     setCurrentPage,
@@ -57,7 +56,8 @@ class UsersClassApiComponent extends React.Component<MainUsersContainerType, Use
                 setCurrentPage={this.props.setCurrentPage}
                 setTotalUsersCount={this.props.setTotalUsersCount}
                 setUsers={this.props.setUsers}
-                //isFetching={this.props.isFetching}
+                isFetching={this.props.isFetching}
+                toggleIsFetching={this.props.toggleIsFetching}
             />
         </>
     }
@@ -70,7 +70,7 @@ export type MapStatePropsType = {
     currentPage: number
     isFetching: boolean
 }
-export type mapDispatchToProps = {
+export type mapDispatchToPropsType = {
     follow: (userId: number) => void,
     unfollow: (userId: number) => void,
     setUsers: (users: Array<UsersType>) => void
@@ -79,7 +79,7 @@ export type mapDispatchToProps = {
     onPageChanged: (p: number) => void
     toggleIsFetching: (isFetching: boolean) => void
 }
-export type MainUsersContainerType = MapStatePropsType & mapDispatchToProps
+export type MainUsersContainerType = MapStatePropsType & mapDispatchToPropsType
 
 let mapStateToProps = (state: AppStateType): MapStatePropsType => {
     return {
@@ -90,7 +90,7 @@ let mapStateToProps = (state: AppStateType): MapStatePropsType => {
         isFetching: state.usersPage.isFetching
     }
 }
-// let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToProps => {
+// let mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
 //     return {
 //         follow: (userId: number) => {
 //             dispatch(followAC(userId))

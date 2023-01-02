@@ -2,8 +2,9 @@ import React from 'react';
 import styles from "./users.module.css";
 import userPhoto from "../../assets/images/user.png";
 import {MainUsersContainerType} from "./UsersContainer";
+import {NavLink} from "react-router-dom";
 
-export const UsersF = (props:MainUsersContainerType) => {
+export const UsersF = (props: MainUsersContainerType) => {
 
     //отображаются все страницы с юзерами
     //let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
@@ -20,7 +21,6 @@ export const UsersF = (props:MainUsersContainerType) => {
         ...fullPages.slice(props.currentPage, props.currentPage + 3)]
 
 
-
     return (
         <div>
             <div>
@@ -35,8 +35,10 @@ export const UsersF = (props:MainUsersContainerType) => {
                 props.users.map(u => <div key={u.id}>
                     <span>
                         <div>
-                            <img alt={"img"} src={u.photos.small != null ? u.photos.small : userPhoto}
-                                 className={styles.userPhoto}/>
+                            <NavLink to={'/profile/'+ u.id}>
+                                 <img alt={"img"} src={u.photos.small != null ? u.photos.small : userPhoto}
+                                      className={styles.userPhoto}/>
+                            </NavLink>
                         </div>
                         <div>
                             {u.followed

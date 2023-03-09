@@ -6,13 +6,6 @@ import {NavLink} from "react-router-dom";
 
 export const UsersF = (props: MainUsersContainerType) => {
 
-    //отображаются все страницы с юзерами
-    //let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
-    //let pages: Array<number> = []
-    // for (let i = 1; i <= pagesCount; i++) {
-    //     pages.push(i)
-    // }
-
 
     // чтобы отображались не все страницы юзеров
     const pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)

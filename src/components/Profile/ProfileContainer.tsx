@@ -1,4 +1,4 @@
-import React, {ReactNode, useEffect} from 'react';
+import React, {ReactNode} from 'react';
 import './Profile.module.css';
 import {RootStateType} from "../../redux/store";
 import {ActionsTypes, AppStateType, setUserProfileAT} from "../../redux/reduxStore";

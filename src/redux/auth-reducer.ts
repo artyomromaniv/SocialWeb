@@ -2,13 +2,13 @@ import {ActionsTypes} from "./reduxStore";
 
 const SET_USER_DATA = "SET-USER-DATA";
 
-export type setUserDataAT = ReturnType<typeof setUserDataAC>
+export type setUserDataAT = ReturnType<typeof setAuthUserDataAC>
 
 let initialState = {
     id: null,
     email: '',
     login: '',
-    //isFetching: false
+    isAuth: false
 }
 
 export type InitialStateType = typeof initialState
@@ -19,13 +19,14 @@ export const authReducer = (state: InitialStateType = initialState, action: Acti
         case SET_USER_DATA:
             return {
                 ...state,
-                ...action.data
+                ...action.data,
+                isAuth: true
             }
         default:
             return state
     }
 }
 
-export const setUserDataAC = (userId: number, email: string, login: string) => ({type: SET_USER_DATA, data:{userId,email,login}} as const)
+export const setAuthUserDataAC = (userId: number, email: string, login: string) => ({type: SET_USER_DATA, data:{userId,email,login}} as const)
 
 

@@ -4,6 +4,7 @@ import {dialogsReducer, sendMessageAC, updateNewMessageBodyAC} from "./dialogsRe
 import {sidebarReducer} from "./sidebarReducer";
 import {follow, setCurrentPage, setTotalUsersCount, setUsers, toggleIsFetching, unFollow, usersReducer}
     from "./usersReducer";
+import {authReducer, setUserDataAT} from "./auth-reducer";
 
 export type ActionsTypes = ReturnType<typeof onPostChangeAC>
     | ReturnType<typeof addPostAC>
@@ -16,6 +17,7 @@ export type ActionsTypes = ReturnType<typeof onPostChangeAC>
     | ReturnType<typeof setTotalUsersCount>
     | ReturnType<typeof toggleIsFetching>
     | setUserProfileAT
+    | setUserDataAT
 
 export type  setUserProfileAT = ReturnType<typeof setUserProfileAC>
 
@@ -25,6 +27,7 @@ let rootReducer = combineReducers({
     dialogsPage: dialogsReducer,
     sideBar: sidebarReducer,
     usersPage: usersReducer,
+    auth: authReducer
 })
 
 //export type TRootState = typeof rootReducer //стейт

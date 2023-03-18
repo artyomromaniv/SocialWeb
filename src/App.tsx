@@ -22,10 +22,10 @@ const App = (props: AppPropsType) => {
                 <Navbar/>
                 <div className={'app-wrapper-content'}>
                     <Switch>
-                        <Route path='/dialogs/*' component={() => <DialogsContainer store={props.store}/>}/>
-                        <Route path='/profile:userId?' component={() => <ProfileContainer store={props.store}
+                        <Route path='/dialogs/*' render={() => <DialogsContainer store={props.store}/>}/>
+                        <Route path='/profile:userId?' render={() => <ProfileContainer store={props.store}
                                                             />}/>
-                        <Route path ='/users' component={() => <UsersContainer unfollow={props.store.dispatch} />}/>
+                        <Route path ='/users' render={() => <UsersContainer unfollow={props.store.dispatch} />}/>
                     </Switch>
                 </div>
             </div>

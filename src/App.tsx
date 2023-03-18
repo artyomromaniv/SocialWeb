@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Switch} from "react-router-dom";
 import {ActionsTypes, TReduxStore} from "./redux/reduxStore";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
@@ -21,12 +21,12 @@ const App = (props: AppPropsType) => {
                 <Header/>
                 <Navbar/>
                 <div className={'app-wrapper-content'}>
-                    <Routes>
-                        <Route path='/dialogs/*' element={<DialogsContainer store={props.store}/>}/>
-                        <Route path='/profile:userId?' element={<ProfileContainer store={props.store}
+                    <Switch>
+                        <Route path='/dialogs/*' component={() => <DialogsContainer store={props.store}/>}/>
+                        <Route path='/profile:userId?' component={() => <ProfileContainer store={props.store}
                                                             />}/>
-                        <Route path ='/users' element={<UsersContainer unfollow={props.store.dispatch} />}/>
-                    </Routes>
+                        <Route path ='/users' component={() => <UsersContainer unfollow={props.store.dispatch} />}/>
+                    </Switch>
                 </div>
             </div>
         //</BrowserRouter>

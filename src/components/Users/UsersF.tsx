@@ -4,6 +4,7 @@ import userPhoto from "../../assets/images/user.png";
 import {MainUsersContainerType} from "./UsersContainer";
 import {NavLink} from "react-router-dom";
 import axios from "axios";
+import {usersAPI} from "../../api/api";
 
 export const UsersF = (props: MainUsersContainerType) => {
 

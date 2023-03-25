@@ -26,10 +26,6 @@ export type UsersType = {
     status: string
     //location: LocationType
 }
-// export type ProfilePageType = {
-//     newPostText: string
-//     users: Array<UsersType>
-// }
 
 let initialState = {
     users: [] as Array<UsersType>,

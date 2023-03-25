@@ -2,7 +2,16 @@ import {combineReducers, createStore} from "redux";
 import {addPostAC, onPostChangeAC, profileReducer, setUserProfileAC} from "./profileReducer";
 import {dialogsReducer, sendMessageAC, updateNewMessageBodyAC} from "./dialogsReducer";
 import {sidebarReducer} from "./sidebarReducer";
-import {follow, setCurrentPage, setTotalUsersCount, setUsers, toggleIsFetching, unFollow, usersReducer}
+import {
+    follow,
+    setCurrentPage,
+    setTotalUsersCount,
+    setUsers,
+    toggleIsFetching,
+    toggleIsFollowingProgress,
+    unFollow,
+    usersReducer
+}
     from "./usersReducer";
 import {authReducer, setUserDataAT} from "./auth-reducer";
 
@@ -18,6 +27,7 @@ export type ActionsTypes = ReturnType<typeof onPostChangeAC>
     | ReturnType<typeof toggleIsFetching>
     | setUserProfileAT
     | setUserDataAT
+    | ReturnType<typeof toggleIsFollowingProgress>
 
 export type  setUserProfileAT = ReturnType<typeof setUserProfileAC>
 

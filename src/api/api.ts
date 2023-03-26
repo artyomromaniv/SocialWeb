@@ -1,5 +1,5 @@
 import axios from "axios";
-import {UsersType} from "../redux/usersReducer";
+
 
 
 const instance = axios.create({
@@ -13,18 +13,16 @@ const instance = axios.create({
 
 export const usersAPI = {
     getUsers(currentPage: number, pageSize: number) {
-        return instance.get(`users?page=${currentPage}&count=${pageSize}`, {})
+        return instance.get(`users?page=${currentPage}&count=${pageSize}`)
             .then(response => {
                 return response.data;
             })
     },
-    // follow(u:UsersType) {
-    //     return instance.delete(`follow/${u.id}`)
-    //         .then(response => {
-    //             if (response.data.resultCode === 0) {
-    //                 unfollow(u.id)
-    //             }
-    //         });
-    // }
+    unfollow(userId: number) {
+        return instance.delete(`follow/${userId}`)
+    },
+    follow(userId: number) {
+        return instance.post(`follow/${userId}`)
+    }
 }
 

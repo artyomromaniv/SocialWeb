@@ -1,4 +1,6 @@
 import {ActionsTypes} from "./reduxStore";
+import {Dispatch} from "redux";
+import {usersAPI} from "../api/api";
 
 export const FOLLOW = "FOLLOW";
 export const UNFOLLOW = "UNFOLLOW";
@@ -92,4 +94,18 @@ export const onPageChanged = (p: number) => ({type: ON_PAGE_CHANGED, p} as const
 export const toggleIsFetching = (isFetching: boolean) => ({type: TOGGLE_IS_FETCHING, isFetching} as const)
 export const toggleIsFollowingProgress = (followingInProgress: boolean, userId: number) =>
     ({type: TOGGLE_IS_FOLLOWING_PROGRESS, followingInProgress, userId} as const)
+
+
+export const getUsersTC = (currentPage: number, pageSize: number) => (dispatch: Dispatch) => {
+
+    dispatch(toggleIsFetching(true))
+
+
+    usersAPI.getUsers(currentPage, pageSize)
+        .then(data => {
+            dispatch(toggleIsFetching(false))
+            dispatch(setUsers(data.items))
+            dispatch(setTotalUsersCount(data.totalCount))
+        });
+}
 

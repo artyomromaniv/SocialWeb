@@ -1,4 +1,4 @@
-import {combineReducers, createStore} from "redux";
+import {applyMiddleware, combineReducers, legacy_createStore} from "redux";
 import {addPostAC, onPostChangeAC, profileReducer, setUserProfileAC} from "./profileReducer";
 import {dialogsReducer, sendMessageAC, updateNewMessageBodyAC} from "./dialogsReducer";
 import {sidebarReducer} from "./sidebarReducer";
@@ -14,6 +14,7 @@ import {
 }
     from "./usersReducer";
 import {authReducer, setUserDataAT} from "./auth-reducer";
+import thunk from "redux-thunk";
 
 export type ActionsTypes = ReturnType<typeof onPostChangeAC>
     | ReturnType<typeof addPostAC>
@@ -40,13 +41,12 @@ let rootReducer = combineReducers({
     auth: authReducer
 })
 
-//export type TRootState = typeof rootReducer //стейт
-export type TReduxStore = typeof store //стор
 
+export type TReduxStore = typeof store //стор
 export type AppStateType = ReturnType<typeof rootReducer>//стейт
 
 
-const store = createStore(rootReducer)
+const store = legacy_createStore(rootReducer,applyMiddleware(thunk))
 
 
-export default store
+export default store;

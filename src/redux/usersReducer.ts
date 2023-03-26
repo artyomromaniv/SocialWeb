@@ -85,6 +85,7 @@ export const usersReducer = (state: InitialStateType = initialState, action: Act
     }
 }
 
+//AC
 export const followSuccess = (userId: number) => ({type: FOLLOW, userId} as const)
 export const unfollowSuccess = (userId: number) => ({type: UNFOLLOW, userId} as const)
 export const setUsers = (users: Array<UsersType>) => ({type: SET_USERS, users} as const)
@@ -95,7 +96,7 @@ export const toggleIsFetching = (isFetching: boolean) => ({type: TOGGLE_IS_FETCH
 export const toggleIsFollowingProgress = (followingInProgress: boolean, userId: number) =>
     ({type: TOGGLE_IS_FOLLOWING_PROGRESS, followingInProgress, userId} as const)
 
-
+//thunk
 export const getUsersTC = (currentPage: number, pageSize: number) => (dispatch: Dispatch) => {
 
     dispatch(toggleIsFetching(true))

@@ -37,7 +37,7 @@ class UsersClassApiComponent extends React.Component<MainUsersContainerType, Use
         return <>
             {this.props.isFetching ? <Preloader/> : null}
             <UsersF
-                //key={this.props.currentPage}
+                key={this.props.currentPage}
                 totalUsersCount={this.props.totalUsersCount}
                 pageSize={this.props.pageSize}
                 currentPage={this.props.currentPage}
@@ -48,9 +48,7 @@ class UsersClassApiComponent extends React.Component<MainUsersContainerType, Use
                 setCurrentPage={this.props.setCurrentPage}
                 isFetching={this.props.isFetching}
                 followingInProgress={this.props.followingInProgress}
-                toggleIsFollowingProgress={this.props.toggleIsFollowingProgress}
                 getUsersTC={this.props.getUsersTC}
-
             />
         </>
     }
@@ -69,7 +67,6 @@ export type mapDispatchToPropsType = {
     unfollow: (userId: number) => void,
     setCurrentPage: (pageNumber: number) => void
     onPageChanged: (p: number) => void
-    toggleIsFollowingProgress: (followingInProgress: boolean, userId: number) => void
     getUsersTC: (currentPage: number, pageSize: number) => void
 }
 export type MainUsersContainerType = MapStatePropsType & mapDispatchToPropsType

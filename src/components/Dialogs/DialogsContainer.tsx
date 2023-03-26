@@ -1,45 +1,19 @@
-import React, {ChangeEvent} from "react";
-import s from './Dialogs.module.css';
+import React from "react";
 import './Dialogs.module.css'
-import DialogItem from "./DialogItem/DialogsItem";
-import {dialogsReducer, sendMessageAC, updateNewMessageBodyAC} from "../../redux/dialogsReducer";
-import {DialogsPage, StoreType} from "../../redux/store"
-import store, {AppStateType, TReduxStore} from "../../redux/reduxStore";
+import { sendMessageAC, updateNewMessageBodyAC} from "../../redux/dialogsReducer";
+import {DialogsPage} from "../../redux/store"
+import  {AppStateType} from "../../redux/reduxStore";
 import Dialogs from "./Dialogs";
-//import {StoreContext} from "../../StoreContext";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
-
-type DialogsType = {
-    store: TReduxStore
-}
-// const DialogsContainer = (props: DialogsType) => {
-//     return (
-//         <StoreContext.Consumer>
-//             {(value) => {
-//                 let state = store.getState().dialogsPage
-//
-//                 const sendMessageClickHandler = () => {
-//                     props.store.dispatch(sendMessageAC())
-//                 }
-//                 const changeNewMessageHandler = (newText: string) => {
-//                     props.store.dispatch(updateNewMessageBodyAC(newText))
-//                 }
-//                 return <Dialogs store={props.store}
-//                                 updateNewMessageBody={changeNewMessageHandler}
-//                                 sendMessage={sendMessageClickHandler}
-//                                 dialogsPage={state}
-//                 />
-//             }}
-//         </StoreContext.Consumer>
-//     )
-// }
 
 
 
 type MapStatePropsType = {
     dialogsPage: DialogsPage
+    isAuth: boolean
 }
+
 type MapDispatchPropsType = {
     updateNewMessageBody: (newText: string) => void
     sendMessage: () => void
@@ -47,7 +21,8 @@ type MapDispatchPropsType = {
 
 let mapStateToProps = (state: AppStateType):MapStatePropsType => {
     return {
-        dialogsPage:state.dialogsPage
+        dialogsPage:state.dialogsPage,
+        isAuth : state.auth.isAuth
     }
 }
 
@@ -62,6 +37,6 @@ let mapDispatchToProps = (dispatch: Dispatch):MapDispatchPropsType => {
     }
 }
 
-const SuperDialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
 
-export default SuperDialogsContainer;
+export default DialogsContainer;

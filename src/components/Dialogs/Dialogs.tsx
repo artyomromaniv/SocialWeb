@@ -2,9 +2,9 @@ import React, {ChangeEvent} from "react";
 import s from './Dialogs.module.css';
 import './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogsItem";
-import { sendMessageAC, updateNewMessageBodyAC} from "../../redux/dialogsReducer";
-import {DialogsPage,  RootStateType, StoreType} from "../../redux/store"
-import store, {TReduxStore} from "../../redux/reduxStore";
+import {DialogsPage} from "../../redux/store"
+import  {TReduxStore} from "../../redux/reduxStore";
+import {Redirect} from "react-router-dom";
 
 type MessagePropsType = {
     id: number
@@ -15,6 +15,7 @@ type DialogsType = {
     updateNewMessageBody:(newText:string)=>void
     sendMessage:()=>void
     dialogsPage: DialogsPage
+    isAuth: boolean
 }
 
 const Message = (props: MessagePropsType) => {
@@ -24,7 +25,7 @@ const Message = (props: MessagePropsType) => {
 }
 
 const Dialogs = (props:DialogsType) => {
-    //const state = store.getState().dialogsPage
+
     const state = props.dialogsPage
 
     const dialogElements = state.dialogs.map(d => <DialogItem key={d.id} name={d.name} id={d.id}/>);
@@ -33,13 +34,15 @@ const Dialogs = (props:DialogsType) => {
 
     const sendMessageClickHandler = () => {
         props.sendMessage()
-        //props.store.dispatch(sendMessageAC())
     }
+
     const changeNewMessageHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
        let newText =  e.currentTarget.value
         props.updateNewMessageBody(newText)
-        //props.store.dispatch(updateNewMessageBodyAC(newText))
     }
+
+    if (!props.isAuth) return <Redirect to={'/login'}/>
+
 
     return (
         <div className={s.dialogs}>

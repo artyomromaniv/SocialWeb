@@ -5,7 +5,7 @@ import { RootStateType} from "../../redux/store";
 import SuperMyPostContainer from "./MyPosts/MyPostsContainer";
 import {ActionsTypes} from "../../redux/reduxStore";
 
-type ProfilePropsType = {
+export type ProfilePropsType = {
     state: RootStateType
     profile:(action:ActionsTypes)=>void
 }

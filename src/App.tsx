@@ -16,7 +16,7 @@ export type AppPropsType = {
 }
 
 const App = (props: AppPropsType) => {
-    //const state = props.store.getState()
+
     return (
         <div className={'app-wrapper'}>
             <HeaderContainer/>
@@ -24,10 +24,9 @@ const App = (props: AppPropsType) => {
             <div className={'app-wrapper-content'}>
                 <Switch>
                     <Route path='/dialogs/'
-                           render={() => <DialogsContainer store={props.store}/>}/>
+                           render={() => <DialogsContainer />}/>
                     <Route path='/profile:userId?'
-                           render={() => <ProfileContainer store={props.store}
-                    />}/>
+                           render={() => <ProfileContainer />}/>
                     <Route path='/users'
                            render={() => <UsersContainer/>}/>
                     <Route path='/login'

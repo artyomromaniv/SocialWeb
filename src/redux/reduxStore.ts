@@ -1,5 +1,5 @@
 import {applyMiddleware, combineReducers, legacy_createStore} from "redux";
-import {addPostAC, onPostChangeAC, profileReducer, setUserProfileAC} from "./profileReducer";
+import {addPostAC, onPostChangeAC, profileReducer, setStatusAC, setUserProfileAC} from "./profileReducer";
 import {dialogsReducer, sendMessageAC, updateNewMessageBodyAC} from "./dialogsReducer";
 import {sidebarReducer} from "./sidebarReducer";
 import {
@@ -29,6 +29,7 @@ export type ActionsTypes = ReturnType<typeof onPostChangeAC>
     | setUserProfileAT
     | setUserDataAT
     | ReturnType<typeof toggleIsFollowingProgress>
+    | ReturnType<typeof setStatusAC>
 
 export type  setUserProfileAT = ReturnType<typeof setUserProfileAC>
 
@@ -46,7 +47,7 @@ export type TReduxStore = typeof store //стор
 export type AppStateType = ReturnType<typeof rootReducer>//стейт
 
 
-const store = legacy_createStore(rootReducer,applyMiddleware(thunk))
+const store = legacy_createStore(rootReducer, applyMiddleware(thunk))
 
 
 export default store;

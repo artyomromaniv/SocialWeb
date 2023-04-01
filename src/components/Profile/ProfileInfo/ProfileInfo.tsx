@@ -6,7 +6,13 @@ import {ProfileStatus} from "./ProfileStatus";
 
 
 
-const ProfileInfo = (props:any) => {
+type ProfileInfoPropsType = {
+    status: string
+    updateStatus:(status:string) => void
+    profile: any   // any?
+}
+
+const ProfileInfo = (props:ProfileInfoPropsType) => {
     if (!props.profile){
         return <Preloader/>
     }
@@ -20,7 +26,9 @@ const ProfileInfo = (props:any) => {
             </div>
             <div className={s.descriptionBlock}>
                 <img alt={'profile_photo'} src={props.profile.photos.large}/>
-                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
+                <ProfileStatus status={props.status}
+                               updateStatus={props.updateStatus}
+                />
             </div>
         </div>
     )

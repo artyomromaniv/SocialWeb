@@ -1,5 +1,4 @@
 import React, {ChangeEvent} from 'react';
-import {RootStateType} from "../../../redux/store";
 
 
 export class ProfileStatus extends React.Component<any, any> {    // any?
@@ -48,7 +47,5 @@ export class ProfileStatus extends React.Component<any, any> {    // any?
             </div>
         );
     }
-
-
 };
 

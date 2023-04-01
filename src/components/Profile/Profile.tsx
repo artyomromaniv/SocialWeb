@@ -1,23 +1,24 @@
 import React from 'react';
 import './Profile.module.css';
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import { RootStateType} from "../../redux/store";
+import {RootStateType} from "../../redux/store";
 import SuperMyPostContainer from "./MyPosts/MyPostsContainer";
 import {ActionsTypes} from "../../redux/reduxStore";
 
 export type ProfilePropsType = {
     state: RootStateType
-    profile:(action:ActionsTypes)=>void
-    status:string
-    updateStatus:string
+    profile: (action: ActionsTypes) => void
+    status: string
+    updateStatus: (status: string) => void
 }
 
-const Profile = (props:ProfilePropsType) => {
+const Profile = (props: ProfilePropsType) => {
     return (
         <div>
             <ProfileInfo profile={props.profile}
                          status={props.status}
-                         updateStatus= {props.updateStatus}/>
+                         updateStatus={props.updateStatus}
+            />
             <SuperMyPostContainer/>
         </div>
     )

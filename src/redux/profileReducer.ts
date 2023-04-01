@@ -27,7 +27,7 @@ let initialState = {
         {id: 5, message: 'what a good day)', likesCount: 143},
     ] as Array<PostsType>,
     profile: null,
-    status: ''
+    status: '',
 }
 
 export type InitialStateType = typeof initialState
@@ -81,7 +81,7 @@ export const updateStatus = (status: string) => (dispatch: Dispatch) => {
     profileAPI.updateStatus(status)
         .then(response => {
             if(response.data.resultCode === 0) {
-                dispatch(setStatusAC(response.data))
+                dispatch(setStatusAC(status))
             }
         })
 }

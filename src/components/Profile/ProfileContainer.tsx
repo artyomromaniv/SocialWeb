@@ -16,11 +16,12 @@ type PathParamType = {
 type mapStateToPropsType = {
     profile: any, /// any?
     status: string
-    // updateStatus: string
+
 }
 type mapDispatchToPropsType = {
     getUserProfile: (userId: string) => void,
     getStatus: (userId: string) => void
+    updateStatus:(status: string )=> void
 }
 export type OwnPropsType = mapStateToPropsType & mapDispatchToPropsType
 

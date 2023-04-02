@@ -15,6 +15,7 @@ import {
     from "./usersReducer";
 import {authReducer, setUserDataAT} from "./auth-reducer";
 import thunk from "redux-thunk";
+import { reducer as formReducer} from 'redux-form';
 
 export type ActionsTypes = ReturnType<typeof onPostChangeAC>
     | ReturnType<typeof addPostAC>
@@ -39,7 +40,8 @@ let rootReducer = combineReducers({
     dialogsPage: dialogsReducer,
     sideBar: sidebarReducer,
     usersPage: usersReducer,
-    auth: authReducer
+    auth: authReducer,
+    form: formReducer
 })
 
 

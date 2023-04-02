@@ -1,5 +1,5 @@
-import {addPostAC, onPostChangeAC, profileReducer} from "./profileReducer";
-import {dialogsReducer, sendMessageAC, updateNewMessageBodyAC} from "./dialogsReducer";
+import {addPostAC} from "./profileReducer";
+import {dialogsReducer, sendMessageAC} from "./dialogsReducer";
 import {sidebarReducer} from "./sidebarReducer";
 import {followSuccess, unfollowSuccess} from "./usersReducer";
 
@@ -31,7 +31,7 @@ type PostsType = {
 export type DialogsPage = {
     dialogs: Array<DialogsType>
     messages: Array<MessagesType>
-    newMessageBody: string
+    //newMessageBody: string
 }
 export type SideBarType = {}
 //общая типизация всех типов данных в стейте
@@ -41,9 +41,8 @@ export type RootStateType = {
     sideBar: SideBarType
 }
 
-type ActionsTypes = ReturnType<typeof onPostChangeAC>
+type ActionsTypes =
     | ReturnType<typeof addPostAC>
-    | ReturnType<typeof updateNewMessageBodyAC>
     | ReturnType<typeof sendMessageAC>
     | ReturnType<typeof followSuccess>
     | ReturnType<typeof unfollowSuccess>
@@ -77,7 +76,6 @@ let store: StoreType = {
                 {id: 4, message: 'Yo'},
                 {id: 5, message: 'Hello'},
             ],
-            newMessageBody: '',
         },
         sideBar: {}
     },

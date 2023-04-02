@@ -1,6 +1,6 @@
 import {applyMiddleware, combineReducers, legacy_createStore} from "redux";
-import {addPostAC, onPostChangeAC, profileReducer, setStatusAC, setUserProfileAC} from "./profileReducer";
-import {dialogsReducer, sendMessageAC, updateNewMessageBodyAC} from "./dialogsReducer";
+import {addPostAC,  profileReducer, setStatusAC, setUserProfileAC} from "./profileReducer";
+import {dialogsReducer, sendMessageAC} from "./dialogsReducer";
 import {sidebarReducer} from "./sidebarReducer";
 import {
     followSuccess,
@@ -17,9 +17,8 @@ import {authReducer, setUserDataAT} from "./auth-reducer";
 import thunk from "redux-thunk";
 import { reducer as formReducer} from 'redux-form';
 
-export type ActionsTypes = ReturnType<typeof onPostChangeAC>
-    | ReturnType<typeof addPostAC>
-    | ReturnType<typeof updateNewMessageBodyAC>
+export type ActionsTypes =
+     ReturnType<typeof addPostAC>
     | ReturnType<typeof sendMessageAC>
     | ReturnType<typeof followSuccess>
     | ReturnType<typeof unfollowSuccess>

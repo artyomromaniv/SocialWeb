@@ -4,9 +4,6 @@ import './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogsItem";
 import {DialogsPage} from "../../redux/store"
 import  {TReduxStore} from "../../redux/reduxStore";
-import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {Textarea} from "../Common/FormsControl/FormsContros";
-import {maxLengthTC, required} from "../../utils/validators/validators";
 import {AddMessageFormRedux, AddMessageFormReduxDataType} from "./AddMessageForm/AddMessageForm";
 
 

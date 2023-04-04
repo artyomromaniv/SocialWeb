@@ -2,6 +2,7 @@ import React from "react";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import s from "../Common/FormsControl/FormsControl.module.css";
 import {maxLengthTC} from "../../utils/validators/validators";
+import {Input} from "../Common/FormsControl/FormsContros";
 
 type FormDataType = {
     login: string,
@@ -61,17 +62,17 @@ export const Login = () => {
         </div>
     )
 }
-
-export const Input = ({input, meta, ...props}) => {   ///???????
-
-    const hasError = meta.touched && meta.error;
-
-    return (
-        <div className={s.formControl + ' ' + (hasError ? s.error : '')}>
-            <div>
-                <input {...input} {...props}/>
-            </div>
-            {hasError && <span>{meta.error}</span>}
-        </div>
-    )
-}
+//
+// export const Input = ({input, meta, ...props}) => {   ///???????
+//
+//     const hasError = meta.touched && meta.error;
+//
+//     return (
+//         <div className={s.formControl + ' ' + (hasError ? s.error : '')}>
+//             <div>
+//                 <input {...input} {...props}/>
+//             </div>
+//             {hasError && <span>{meta.error}</span>}
+//         </div>
+//     )
+// }

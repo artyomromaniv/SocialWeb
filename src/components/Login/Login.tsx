@@ -1,5 +1,7 @@
 import React from "react";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import s from "../Common/FormsControl/FormsControl.module.css";
+import {maxLengthTC} from "../../utils/validators/validators";
 
 type FormDataType = {
     login: string,
@@ -8,17 +10,34 @@ type FormDataType = {
 }
 
 export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
+
+    const maxLength10 = maxLengthTC(10)
+
     return (
         <div>
             <form onSubmit={props.handleSubmit}>
                 <div>
-                    <Field placeholder={'Login'} name={'login'} component={'input'}/>
+                    <Field
+                        placeholder={'Login'}
+                        name={'login'}
+                        validate={[require,maxLength10]}
+                        component={Input}
+                    />
                 </div>
                 <div>
-                    <Field placeholder={'Password'} name={'password'} component={'input'}/>
+                    <Field
+                        placeholder={'Password'}
+                        name={'password'}
+                        validate={[require,maxLength10]}
+                        component={Input}
+                    />
                 </div>
                 <div>
-                    <Field component={'input'} name={'rememberMe'} type={"checkbox"}/> remember me
+                    <Field
+                        component={Input}
+                        name={'rememberMe'}
+                        type={"checkbox"}
+                    /> remember me
                 </div>
                 <div>
                     <button>Login</button>
@@ -39,6 +58,20 @@ export const Login = () => {
         <div>
             <h1>LOGIN</h1>
             <LoginReduxForm onSubmit={onSubmit}/>
+        </div>
+    )
+}
+
+export const Input = ({input, meta, ...props}) => {   ///???????
+
+    const hasError = meta.touched && meta.error;
+
+    return (
+        <div className={s.formControl + ' ' + (hasError ? s.error : '')}>
+            <div>
+                <input {...input} {...props}/>
+            </div>
+            {hasError && <span>{meta.error}</span>}
         </div>
     )
 }

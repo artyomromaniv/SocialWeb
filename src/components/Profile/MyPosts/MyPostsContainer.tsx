@@ -18,7 +18,6 @@ type MyPostsType = {
 }
 
 type MapStatePropsType = {
-
     posts:Array<MyPostsPropsType>
 }
 type MapDispatchPropsType = {
@@ -40,7 +39,6 @@ let mapDispatchToProps = (dispatch:Dispatch):MapDispatchPropsType => {
         }
     }
 }
-
 
 const SuperMyPostContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
 

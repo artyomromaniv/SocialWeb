@@ -5,6 +5,9 @@ import DialogItem from "./DialogItem/DialogsItem";
 import {DialogsPage} from "../../redux/store"
 import  {TReduxStore} from "../../redux/reduxStore";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
+import {Textarea} from "../Common/FormsControl/FormsContros";
+import {maxLengthTC, required} from "../../utils/validators/validators";
+import {AddMessageFormRedux, AddMessageFormReduxDataType} from "./AddMessageForm/AddMessageForm";
 
 
 type MessagePropsType = {
@@ -50,23 +53,6 @@ const Dialogs = (props:DialogsType) => {
     )
 }
 
-type AddMessageFormReduxDataType = {
-    newMessageBody: string
-}
 
-export const AddMessageForm:React.FC<InjectedFormProps<AddMessageFormReduxDataType>> = (props) => {
-    return (
-        <form onSubmit={props.handleSubmit}>
-            <div>
-                <Field component={'textarea'} name={'newMessageBody'} placeholder={'Enter your message'}/>
-            </div>
-            <div>
-                <button>Send</button>
-            </div>
-        </form>
-    )
-}
-
-const AddMessageFormRedux = reduxForm<AddMessageFormReduxDataType>({form:'dialogAddMessageForm'})(AddMessageForm)
 
 export default Dialogs;

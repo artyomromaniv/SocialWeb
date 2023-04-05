@@ -3,7 +3,7 @@ import s from './FormsControl.module.css'
 
 
 interface FormsControlPropsType {
-   input: object
+   input: string
    label: string
    type: string
    meta: {
@@ -13,16 +13,16 @@ interface FormsControlPropsType {
    }
 }
 
-const Element = (Elements:FC|string): FC<FormsControlPropsType> => ({ input, meta, ...props }) => {
+const Element = (Elements: FC | string): FC<FormsControlPropsType> => ({input, meta, ...props}) => {
    const hasError = meta.touched && meta.error;
    return (
-      <div className={ s.formControl + " " + (hasError ? s.error : "") }>
+      <div className={s.formControl + " " + (hasError ? s.error : "")}>
          <Elements
             {...input}
             {...props}
          />
          <div>
-            { hasError && <span style={{color: 'orange', fontSize: '16px'}}> { meta.error } </span> }
+            {hasError && <span style={{color: 'orange', fontSize: '16px'}}> {meta.error} </span>}
          </div>
       </div>
    );

@@ -3,7 +3,7 @@ import './Header.module.css';
 import Header from "./Header";
 import {RootStateType} from "../../redux/store";
 import {connect} from "react-redux";
-import {getAuthUserData} from "../../redux/auth-reducer";
+import {getAuthUserData, logout} from "../../redux/auth-reducer";
 import {AppStateType} from "../../redux/reduxStore";
 
 
@@ -14,7 +14,7 @@ class HeaderContainer extends React.Component<any, RootStateType> {
     }
 
     render(): ReactNode {
-        return <Header isAuth={undefined} login={undefined} {...this.props}/>;
+        return <Header isAuth={false} login={undefined} logout={undefined} {...this.props}/>;
     }
 
 }
@@ -28,5 +28,5 @@ const mapStateToProps = (state:AppStateType): mapStateToPropsType => ({
     login: state.auth.login
 })
 
-export default connect(mapStateToProps,{getAuthUserData})(HeaderContainer);
+export default connect(mapStateToProps,{getAuthUserData,logout})(HeaderContainer);
 

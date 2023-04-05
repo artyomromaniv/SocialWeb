@@ -1,9 +1,9 @@
-import React, {DetailedHTMLProps, InputHTMLAttributes, TextareaHTMLAttributes} from 'react';
+import React, {FC} from 'react';
 import s from './FormsControl.module.css'
 
 
-type  FormsControlPropsType = {
-   input: string
+interface FormsControlPropsType {
+   input: object
    label: string
    type: string
    meta: {
@@ -13,11 +13,11 @@ type  FormsControlPropsType = {
    }
 }
 
-const Element = (Element: string | React.FC): React.FC<FormsControlPropsType> => ({ input, meta, ...props }) => {
+const Element = (Elements:FC|string): FC<FormsControlPropsType> => ({ input, meta, ...props }) => {
    const hasError = meta.touched && meta.error;
    return (
       <div className={ s.formControl + " " + (hasError ? s.error : "") }>
-         <Element
+         <Elements
             {...input}
             {...props}
          />

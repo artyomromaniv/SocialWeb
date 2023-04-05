@@ -1,78 +1,33 @@
 import React from "react";
-import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import s from "../Common/FormsControl/FormsControl.module.css";
-import {maxLengthTC} from "../../utils/validators/validators";
-import {Input} from "../Common/FormsControl/FormsContros";
+import { reduxForm} from "redux-form";
+import {connect} from "react-redux";
+import {login, logout} from "../../redux/auth-reducer";
+import {LoginReduxForm} from "./LoginForm";
 
-type FormDataType = {
-    login: string,
-    password: string,
-    rememberMe: boolean
+export type FormDataType = {
+   email: string,
+   password: string,
+   rememberMe: boolean
 }
 
-export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
-
-    const maxLength10 = maxLengthTC(10)
-
-    return (
-        <div>
-            <form onSubmit={props.handleSubmit}>
-                <div>
-                    <Field
-                        placeholder={'Login'}
-                        name={'login'}
-                        validate={[require,maxLength10]}
-                        component={Input}
-                    />
-                </div>
-                <div>
-                    <Field
-                        placeholder={'Password'}
-                        name={'password'}
-                        validate={[require,maxLength10]}
-                        component={Input}
-                    />
-                </div>
-                <div>
-                    <Field
-                        component={Input}
-                        name={'rememberMe'}
-                        type={"checkbox"}
-                    /> remember me
-                </div>
-                <div>
-                    <button>Login</button>
-                </div>
-            </form>
-        </div>
-    )
+type mapDispatchToPropsType = {
+   login: (email: string, password: string, rememberMe: boolean) => void,
+   logout: () => void
 }
 
-export const LoginReduxForm = reduxForm<FormDataType>({form: 'login'})(LoginForm)
+type LoginPropsType = mapDispatchToPropsType
 
 
-export const Login = () => {
-    const onSubmit = (formData: FormDataType) => {
-        console.log(formData)
-    }
-    return (
-        <div>
-            <h1>LOGIN</h1>
-            <LoginReduxForm onSubmit={onSubmit}/>
-        </div>
-    )
+const Login = (props: LoginPropsType) => {
+   const onSubmit = (formData: FormDataType) => {
+      props.login(formData.email, formData.password, formData.rememberMe)
+   }
+   return (
+      <div>
+         <h1>LOGIN</h1>
+         <LoginReduxForm onSubmit={onSubmit}/>
+      </div>
+   )
 }
-//
-// export const Input = ({input, meta, ...props}) => {   ///???????
-//
-//     const hasError = meta.touched && meta.error;
-//
-//     return (
-//         <div className={s.formControl + ' ' + (hasError ? s.error : '')}>
-//             <div>
-//                 <input {...input} {...props}/>
-//             </div>
-//             {hasError && <span>{meta.error}</span>}
-//         </div>
-//     )
-// }
+
+export default connect(null, {login, logout})(Login);
